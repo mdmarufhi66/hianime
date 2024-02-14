@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const AnimeList = () => {
   const [order, setOrder] = useState("popularity");
-  const [page, setPage] = useState("popularity");
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchAnime = () => {};
@@ -14,8 +14,11 @@ const AnimeList = () => {
     fetchAnime();
   }, [page]);
 
+  // Should use useEffectExceptFirstRender instead
   useEffect(() => {
-    const fetchAnime = () => {};
+    const fetchAnime = () => {
+      setPage(1)
+    };
 
     fetchAnime();
   }, [order]);
