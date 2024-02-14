@@ -30,6 +30,8 @@ const TabPanel = () => {
         order = "popularity"; // Set order to "popularity" for the first tab
       } else if (value === 1) {
         order = "rating"; // Set order to "rating" for the second tab
+      } else if (value === 2) {
+        order = "released"; // Set order to "released" for the third tab
       } else {
         // Handle additional tabs or default order
         order = "defaultOrder";
@@ -60,13 +62,9 @@ const TabPanel = () => {
           <Tab sx={{ color: "white" }} label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <CustomTabPanel
-        className="flex justify-center font-medium"
-        value={value}
-        index={0}
-      >
-        Popular
-        {tabData}
+      <CustomTabPanel className=" font-medium" value={value} index={0}>
+        <div className="flex justify-center font-medium">Popular</div>
+        <div className="grid grid-cols-4 ">{tabData}</div>
       </CustomTabPanel>
       <CustomTabPanel
         className="flex justify-center font-serif"

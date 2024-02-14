@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import { fetchAnime } from "../app/action";
+import AnimeCard from "./AnimeCard";
 
 let page = 2;
 
@@ -14,7 +15,7 @@ function LoadMore() {
   useEffect(() => {
     if (inView) {
       fetchAnime(page).then((res) => {
-        setData([...data, ...res]);
+        setData((...prevData) => [...data, ...res]);
         page++;
       });
     }
@@ -23,7 +24,9 @@ function LoadMore() {
   return (
     <>
       <section className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
-        {data}
+        {data.map((anime, index) => (
+          <AnimeCard key={index} anime={anime} />
+        ))}
       </section>
       <section className="flex justify-center items-center w-full">
         <div ref={ref}>

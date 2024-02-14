@@ -16,6 +16,11 @@ function AnimeCard({ anime, index }) {
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const imageSrc =
+    anime.image && anime.image.original
+      ? `https://shikimori.one${anime.image.original}`
+      : null;
+
   const handleFavorite = () => {
     setIsFavorite(!isFavorite);
   };
@@ -35,14 +40,19 @@ function AnimeCard({ anime, index }) {
         className="max-w-sm rounded relative w-full h-full p-4 shadow-md"
       >
         <div className="relative w-full h-[37vh] sm:justify-center">
-          <div className="w-full h-12 cursor-pointer" onClick={handleOpenModal}>
-            <Image
-              src={`https://shikimori.one${anime.image}`}
-              alt={anime.name}
-              fill
-              className="rounded-xl object-contain"
-            />
-          </div>
+          {imageSrc && (
+            <div
+              className="w-full h-12 cursor-pointer"
+              onClick={handleOpenModal}
+            >
+              <Image
+                src={imageSrc}
+                alt={anime.name}
+                fill
+                className="rounded-xl object-contain"
+              />
+            </div>
+          )}
         </div>
         <div className="py-4 flex flex-col gap-3">
           <div className="flex justify-between items-center gap-1">
@@ -98,13 +108,15 @@ function AnimeCard({ anime, index }) {
             <ul>
               <li key={anime.id}>
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                  <Image
-                    src={`https://shikimori.one${anime.image.original}`}
-                    alt={anime.name}
-                    width={100}
-                    height={100}
-                    className="w-full h-56 object-cover rounded-md"
-                  />
+                  {anime.image && anime.image.original && (
+                    <Image
+                      src={`https://shikimori.one${anime.image.original}`}
+                      alt={anime.name}
+                      width={100}
+                      height={100}
+                      className="w-full h-56 object-cover rounded-md"
+                    />
+                  )}
                   <div class="p-5">
                     <div className="flex justify-between items-center gap-1">
                       <h2 className="font-bold text-white text-lg line-clamp-1 w-full">
