@@ -8,18 +8,19 @@ import AnimeCard from "./AnimeCard";
 
 let page = 2;
 
-function LoadMore() {
+function LoadMore({ order }) {
   const { ref, inView } = useInView();
   const [data, setData] = useState([]);
 
   useEffect(() => {
     if (inView) {
-      fetchAnime(page).then((res) => {
+      fetchAnime(page, order).then((res) => {
+        console.log(res);
         setData((...prevData) => [...data, ...res]);
         page++;
       });
     }
-  }, [inView, data]);
+  }, [inView, data, order]);
 
   return (
     <>

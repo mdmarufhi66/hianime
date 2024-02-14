@@ -15,34 +15,33 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-const TabPanel = () => {
+const TabPanel = ({ order, setOrder }) => {
   const [value, setValue] = React.useState(0);
   const [tabData, setTabData] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+
+    if (newValue === 0) {
+      setOrder("popularity");
+    } else if (newValue === 1) {
+      setOrder("rating");
+    } else if (newValue === 2) {
+      setOrder("released");
+    } else {
+      setOrder("defaultOrder");
+    }
   };
 
   useEffect(() => {
     async function fetchData() {
-      let order;
-      if (value === 0) {
-        order = "popularity"; // Set order to "popularity" for the first tab
-      } else if (value === 1) {
-        order = "rating"; // Set order to "rating" for the second tab
-      } else if (value === 2) {
-        order = "released"; // Set order to "released" for the third tab
-      } else {
-        // Handle additional tabs or default order
-        order = "defaultOrder";
-      }
-
       // Fetch data using the defined order
       const data = await fetchAnime(value + 1, order);
+      console.log(data);
       setTabData(data);
     }
     fetchData();
-  }, [value]);
+  }, [order, setOrder, value]);
 
   return (
     <Box sx={{ width: "100%" }}>
