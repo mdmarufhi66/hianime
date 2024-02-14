@@ -37,7 +37,7 @@ function AnimeCard({ anime, index }) {
         <div className="relative w-full h-[37vh] sm:justify-center">
           <div className="w-full h-12 cursor-pointer" onClick={handleOpenModal}>
             <Image
-              src={`https://shikimori.one${anime.image?.original}`}
+              src={`https://shikimori.one${anime.image}`}
               alt={anime.name}
               fill
               className="rounded-xl object-contain"
