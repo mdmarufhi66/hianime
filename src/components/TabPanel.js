@@ -58,26 +58,36 @@ const TabPanel = ({ order, setOrder }) => {
         >
           <Tab sx={{ color: "white" }} label="Popular" {...a11yProps(0)} />
           <Tab sx={{ color: "white" }} label="Top Rated" {...a11yProps(1)} />
-          <Tab sx={{ color: "white" }} label="Item Three" {...a11yProps(2)} />
+          <Tab
+            sx={{ color: "white" }}
+            label="Recently Released"
+            {...a11yProps(2)}
+          />
         </Tabs>
       </Box>
       <CustomTabPanel className=" font-medium" value={value} index={0}>
         <div className="flex justify-center font-medium">Popular</div>
-        <div className="grid grid-cols-4 ">{tabData}</div>
+        <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
+          {tabData}
+        </div>
       </CustomTabPanel>
       <CustomTabPanel
         className="flex justify-center font-serif"
         value={value}
         index={1}
       >
-        {tabData}
+        <div className="flex justify-center font-medium">Top Rated</div>
+        <div>
+          <div className="grid grid-cols-4">{tabData}</div>
+        </div>
       </CustomTabPanel>
       <CustomTabPanel
         className="flex justify-center font-serif"
         value={value}
         index={2}
       >
-        Item Three
+        <div className="flex justify-center font-medium">Recently Released</div>
+        <div className="grid grid-cols-4">{tabData}</div>
       </CustomTabPanel>
     </Box>
   );

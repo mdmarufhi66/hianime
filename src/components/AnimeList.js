@@ -2,6 +2,7 @@
 
 import LoadMore from "@/components/LoadMore";
 import TabPanel from "@/components/TabPanel";
+import { useEffectExceptFirstRender } from "hookverse";
 import { useEffect, useState } from "react";
 
 const AnimeList = () => {
@@ -15,12 +16,12 @@ const AnimeList = () => {
   }, [page]);
 
   // Should use useEffectExceptFirstRender instead
-  useEffect(() => {
+  useEffectExceptFirstRender(() => {
     const fetchAnime = () => {
-      setPage(1)
-    };
+      setPage(1);
 
-    fetchAnime();
+      console.log(order);
+    };
   }, [order]);
 
   return (
