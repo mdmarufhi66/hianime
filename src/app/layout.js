@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import AuthProvider from "@/context/AuthProvider";
+import { WatchlistProvider } from "@/context/WatchListContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,14 +19,16 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          <main className="max-w-7xl mx-auto bg-[#0F1117]">
-            <div className="bg-hero bg-center bg-cover bg-no-repeat">
-              <Navbar />
-              <Hero />
-            </div>
-            {children}
-            <Footer />
-          </main>
+          <WatchlistProvider>
+            <main className="max-w-7xl mx-auto bg-[#0F1117]">
+              <div className="bg-hero bg-center bg-cover bg-no-repeat">
+                <Navbar />
+                <Hero />
+              </div>
+              {children}
+              <Footer />
+            </main>
+          </WatchlistProvider>
         </AuthProvider>
       </body>
     </html>

@@ -7,23 +7,31 @@ import { MotionDiv } from "./Motion";
 import Link from "next/link";
 import Modal from "./Modal";
 import useModal from "../hooks/useModal";
+import { useWatchlist } from "@/context/WatchListContext";
+import { useRouter } from "next/navigation";
 
 const stagger = 0.25;
 
 const variants = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
 
 function AnimeCard({ anime, index }) {
+  const router = useRouter();
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
+  const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist();
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const handleFavorite = () => {
+    setIsFavorite(!isFavorite);
+    if (!isFavorite) {
+      addToWatchlist(anime); // Add to watchlist
+    } else {
+      removeFromWatchlist(anime.id); // Remove from watchlist
+    }
+  };
   const imageSrc =
     anime.image && anime.image.original
       ? `https://shikimori.one${anime.image.original}`
       : null;
-
-  const handleFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
 
   return (
     <>
