@@ -59,21 +59,22 @@ export default function Navbar() {
           </button>
           <DropMenu isOpen={dropdownOpen}>
             {dropdownOpen && (
-              <div
-                ref={dropdownRef}
-                className=" top-full right-0 mt-2 bg-white rounded shadow-md"
-              >
-                <Link href="/watchlist">
-                  <p className="text-lg text-gray-500 font-medium p-2 hover:bg-gray-100 cursor-pointer">
-                    Watchlist
-                  </p>
-                </Link>
-                <button
-                  onClick={() => signOut()}
-                  className="text-lg text-gray-500 font-medium"
-                >
-                  Sign Out
-                </button>
+              <div ref={dropdownRef}>
+                <ul className="relative z-[1000] float-left right-10 m-0 min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block">
+                  <li className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600">
+                    <Link href="/watchlist">
+                      <p>Watchlist</p>
+                    </Link>
+                  </li>
+                  <li className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600">
+                    <button
+                      onClick={() => signOut()}
+                      className="text-lg text-gray-500 font-medium"
+                    >
+                      Sign Out
+                    </button>
+                  </li>
+                </ul>
               </div>
             )}
           </DropMenu>
