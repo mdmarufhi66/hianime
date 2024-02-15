@@ -1,7 +1,4 @@
 import AnimeList from "@/components/AnimeList";
-import { fetchAnime } from "../app/action";
-import LoadMore from "@/components/LoadMore";
-import TabPanel from "@/components/TabPanel";
 
 function Home() {
   return (
