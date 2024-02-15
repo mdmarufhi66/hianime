@@ -9,24 +9,23 @@ const MAX_LIMIT = 8;
 
 const AnimeList = () => {
   const [order, setOrder] = useState("popularity");
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(null);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchAnime = useCallback(async () => {
-    const response = await fetch(
-      `https://shikimori.one/api/animes?page=${page}&limit=${MAX_LIMIT}&order=${order}`
-    );
-    const data = await response.json();
-
-    setList((prevList) => [...prevList, ...data]);
-    setLoading(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
-
   useEffect(() => {
-    fetchAnime();
-  }, [fetchAnime]);
+    const fetchAnime = async () => {
+      const response = await fetch(
+        `https://shikimori.one/api/animes?page=${page}&limit=${MAX_LIMIT}&order=${order}`
+      );
+      const data = await response.json();
+      setList((prevList) => [...prevList, ...data]);
+      setLoading(false);
+    };
+    if (page) {
+      fetchAnime();
+    }
+  }, [order, page]);
 
   useEffectExceptFirstRender(() => {
     setList([]);
