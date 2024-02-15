@@ -21,13 +21,11 @@ const AnimeList = () => {
 
     setList((prevList) => [...prevList, ...data]);
     setLoading(false);
-    console.log(page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   useEffect(() => {
     fetchAnime();
-    console.log("test");
   }, [fetchAnime]);
 
   useEffectExceptFirstRender(() => {
@@ -37,7 +35,6 @@ const AnimeList = () => {
 
   const nextPage = () => {
     setPage((prevPage) => prevPage + 1);
-    console.log("xx");
   };
 
   return (
