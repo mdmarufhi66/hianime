@@ -15,12 +15,13 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-const TabPanel = ({ order, setOrder }) => {
+const TabPanel = ({ setOrder }) => {
   const [value, setValue] = React.useState(0);
-  const [tabData, setTabData] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+
+    console.log(newValue);
 
     if (newValue === 0) {
       setOrder("popularity");
@@ -32,16 +33,6 @@ const TabPanel = ({ order, setOrder }) => {
       setOrder("defaultOrder");
     }
   };
-
-  useEffect(() => {
-    async function fetchData() {
-      // Fetch data using the defined order
-      const data = await fetchAnime(value + 1, order);
-      console.log(data);
-      setTabData(data);
-    }
-    fetchData();
-  }, [order, setOrder, value]);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -67,9 +58,6 @@ const TabPanel = ({ order, setOrder }) => {
       </Box>
       <CustomTabPanel className=" font-medium" value={value} index={0}>
         <div className="flex justify-center font-medium">Popular</div>
-        <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
-          {tabData}
-        </div>
       </CustomTabPanel>
       <CustomTabPanel
         className="flex justify-center font-serif"
@@ -77,9 +65,6 @@ const TabPanel = ({ order, setOrder }) => {
         index={1}
       >
         <div className="flex justify-center font-medium">Top Rated</div>
-        <div>
-          <div className="grid grid-cols-4">{tabData}</div>
-        </div>
       </CustomTabPanel>
       <CustomTabPanel
         className="flex justify-center font-serif"
@@ -87,7 +72,6 @@ const TabPanel = ({ order, setOrder }) => {
         index={2}
       >
         <div className="flex justify-center font-medium">Recently Released</div>
-        <div className="grid grid-cols-4">{tabData}</div>
       </CustomTabPanel>
     </Box>
   );
