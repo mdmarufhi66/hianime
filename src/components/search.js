@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import useModal from "../hooks/useModal";
 import Link from "next/link";
 import Image from "next/image";
+import { IoSearch } from "react-icons/io5";
 import { DropMenu } from "./DropMenu";
 
 export const SearchBar = () => {
@@ -91,14 +92,14 @@ export const SearchBar = () => {
             />
 
             <button
-              className="relative z-[2] rounded-r border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+              className="relative z-[2] rounded-r border-2 border-primary px-6 text-lg font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
               type="button"
               id="button-addon3"
               data-te-ripple-init
               data-te-ripple-color="light"
               onClick={handleSearch}
             >
-              Search
+              <IoSearch />
             </button>
             <DropMenu isOpen={dropdownOpen}>
               {dropdownOpen && (

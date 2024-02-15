@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useState } from "react";
 import { MotionDiv } from "./Motion";
 import Link from "next/link";
@@ -98,7 +98,9 @@ function AnimeCard({ anime, index }) {
             >
               Add to Watchlist
             </button>
-            <FaRegHeart />
+            <button onClick={handleFavorite}>
+              {isFavorite ? <FaHeart /> : <FaRegHeart />}
+            </button>
           </div>
         </div>
       </MotionDiv>

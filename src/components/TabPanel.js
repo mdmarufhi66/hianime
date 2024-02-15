@@ -40,11 +40,29 @@ const TabPanel = ({ setOrder }) => {
             },
           }}
         >
-          <Tab sx={{ color: "white" }} label="Popular" {...a11yProps(0)} />
-          <Tab sx={{ color: "white" }} label="Ranked" {...a11yProps(1)} />
           <Tab
-            sx={{ color: "white" }}
-            label="Recently Released"
+            sx={{
+              color: "white",
+              "&.Mui-selected": { color: "white" },
+            }}
+            label="Popular"
+            {...a11yProps(0)}
+          />
+          <Tab
+            sx={{
+              color: "white",
+              "&.Mui-selected": { color: "white" },
+            }}
+            label="Trending"
+            {...a11yProps(1)}
+          />
+          <Tab
+            sx={{
+              color: "white",
+              "&.Mui-selected": { color: "white" },
+            }}
+            className="text-white"
+            label="Golden"
             {...a11yProps(2)}
           />
         </Tabs>
