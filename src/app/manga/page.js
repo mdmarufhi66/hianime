@@ -1,3 +1,4 @@
+import MangaList from "@/components/MangaList";
 import React from "react";
 
 const Manga = () => {
@@ -6,6 +7,7 @@ const Manga = () => {
       <h1 className="justify-self-center text-3xl font-bold">
         Explore <span className="red-gradient">Manga</span>
       </h1>
+      <MangaList />
     </div>
   );
 };
