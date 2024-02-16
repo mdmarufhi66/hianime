@@ -82,7 +82,7 @@ export const SearchBar = () => {
           <div className="relative flex w-full flex-wrap items-stretch">
             <input
               type="search"
-              className="relative m-0 -mr-0.5 block min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-white outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-white focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+              className="relative m-0 -mr-0.5 block min-w-0 flex-auto rounded-full border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-white outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-white focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
               placeholder="Search"
               aria-label="Search"
               aria-describedby="button-addon3"
@@ -91,19 +91,11 @@ export const SearchBar = () => {
               onClick={() => setDropdownOpen(!dropdownOpen)}
             />
 
-            <button
-              className="relative z-[2] rounded-r border-2 border-primary px-6 text-lg font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
-              type="button"
-              id="button-addon3"
-              data-te-ripple-init
-              data-te-ripple-color="light"
-              onClick={handleSearch}
-            >
-              <IoSearch />
-            </button>
+            <IoSearch className="right-1 absolute inset-y-0 my-auto h-4 w-4 focus:border-primary" />
+
             <DropMenu isOpen={dropdownOpen}>
               {dropdownOpen && (
-                <div ref={dropdownRef} className="flex bg-[#0A0023]">
+                <div ref={dropdownRef} className="flex bg-[#0A0023] rounded-md">
                   <ul className="flex flex-col gap-2 text-white">
                     {search(items).map((item) => (
                       <Link
@@ -115,8 +107,10 @@ export const SearchBar = () => {
                             <Image
                               src={`https://shikimori.one${item.image.original}`}
                               alt={item.name}
-                              width={100}
-                              height={100}
+                              width={0}
+                              height={0}
+                              sizes="100vw"
+                              style={{ width: "100%", height: "auto" }}
                             />
                           </div>
                           <div className="items-center font-serif ">

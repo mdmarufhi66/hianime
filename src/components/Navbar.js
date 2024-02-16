@@ -38,7 +38,10 @@ export default function Navbar() {
       <Link href="/">
         <Image src="/logo.png" alt="ZenAnime" width={100} height={100} />
       </Link>
-      <nav>
+      <div className="hidden md:flex">
+        <Link href="/manga">Manga</Link>
+      </div>
+      <nav className="flex gap-3 md:Gap-5">
         <SearchBar />
       </nav>
 
