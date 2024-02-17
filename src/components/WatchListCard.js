@@ -6,6 +6,28 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 const WatchListCard = ({ anime }) => {
   const [isFavorited, setIsFavorited] = React.useState(false);
 
+  const handleRemoveFromWatchlist = (animeIdToRemove) => {
+    let existingWatchlist = localStorage.getItem("watchlist");
+
+    // Parse existing watchlist data (if available)
+    existingWatchlist = existingWatchlist ? JSON.parse(existingWatchlist) : [];
+
+    // Find the index of the item to remove in the watchlist array
+    const indexOfItemToRemove = existingWatchlist.findIndex(
+      (item) => item.id === animeIdToRemove
+    );
+
+    if (indexOfItemToRemove !== -1) {
+      // Remove the item from the watchlist array
+      existingWatchlist.splice(indexOfItemToRemove, 1);
+
+      // Save the modified watchlist data back to localStorage
+      localStorage.setItem("watchlist", JSON.stringify(existingWatchlist));
+    } else {
+      console.log("Item not found in watchlist.");
+    }
+  };
+
   const handleFavoriteClick = () => {
     setIsFavorited(!isFavorited);
     console.log("Favorite clicked");
@@ -66,16 +88,12 @@ const WatchListCard = ({ anime }) => {
         <div className="flex justify-between items-center">
           <button
             className="py-1 px-2 bg-[#161921] rounded-sm"
-            onClick={handleFavoriteClick}
+            onClick={() => handleRemoveFromWatchlist(anime.id)}
           >
-            {isFavorited ? (
-              <p>Remove from Watchlist</p>
-            ) : (
-              <p>Add to Watchlist</p>
-            )}
+            Remove from Watchlist
           </button>
           <button onClick={handleFavoriteClick}>
-            {isFavorited ? <FaHeart /> : <FaRegHeart />}
+            <FaHeart />
           </button>
         </div>
       </div>

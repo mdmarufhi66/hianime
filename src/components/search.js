@@ -95,33 +95,36 @@ export const SearchBar = () => {
 
             <DropMenu isOpen={dropdownOpen}>
               {dropdownOpen && (
-                <div ref={dropdownRef} className="flex bg-[#0A0023] rounded-md">
-                  <ul className="flex flex-col gap-2 text-white">
+                <div
+                  ref={dropdownRef}
+                  className="flex bg-zinc-950 rounded-md w-full hover:bg-zinc-800"
+                >
+                  <ul className="flex flex-col text-white w-screen mx-2">
                     {search(items).map((item) => (
                       <Link
                         key={item.id}
                         href={`https://shikimori.one${item.url}`}
                       >
-                        <li className="flex">
-                          <div className="relative flex-1 pr-1">
+                        <li className="flex gap-3 py-2">
+                          <div className="relative flex-1 rounded-full p-2">
                             <Image
                               src={`https://shikimori.one${item.image.original}`}
                               alt={item.name}
-                              width={0}
-                              height={0}
-                              sizes="100vw"
-                              style={{ width: "100%", height: "auto" }}
+                              width={47}
+                              height={47}
+                              className="rounded-full"
                             />
                           </div>
-                          <div className="items-center font-serif ">
-                            <h3 className="text-white font-bold overflow-auto my-2">
+                          <div className="items-center relative ">
+                            <h3 className="text-white font-bold overflow-auto">
                               {item.name}
                             </h3>
+                            <div className="border-t" />
+                            <p>Aired: {item.aired_on}</p>
                             <p className="">{`Kind: ${item.kind}`}</p>
-                            <div className="border-t" />
                             <p>Episodes: {item.episodes}</p>
-                            <div className="border-t" />
-                            <p>Score: {item.score}</p>
+
+                            <p>Rate: {item.score}</p>
                           </div>
                         </li>
                       </Link>

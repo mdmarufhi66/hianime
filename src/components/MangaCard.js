@@ -20,6 +20,27 @@ function MangaCard({ manga, index }) {
   const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist();
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const handleAddToWatchlist = () => {
+    const mangaData = {
+      id: manga.id,
+      name: manga.name,
+      image: manga.image,
+      chapters: manga.chapters,
+      chapters_aired: manga.chapters_aired,
+      score: manga.score,
+      kind: manga.kind,
+      isFavorite: true,
+    };
+
+    let existingWatchlist = localStorage.getItem("watchlist");
+
+    existingWatchlist = existingWatchlist ? JSON.parse(existingWatchlist) : [];
+
+    existingWatchlist.push(mangaData);
+
+    localStorage.setItem("watchlist", JSON.stringify(existingWatchlist));
+  };
+
   const handleFavorite = () => {
     setIsFavorite(!isFavorite);
     if (!isFavorite) {
@@ -102,11 +123,11 @@ function MangaCard({ manga, index }) {
           <div className="flex justify-between items-center">
             <button
               className="py-1 px-2 bg-[#161921] rounded-sm"
-              onClick={handleFavorite}
+              onClick={handleAddToWatchlist}
             >
               Add to Watchlist
             </button>
-            <button onClick={handleFavorite}>
+            <button onClick={handleAddToWatchlist}>
               {isFavorite ? <FaHeart /> : <FaRegHeart />}
             </button>
           </div>

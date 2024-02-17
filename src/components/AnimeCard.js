@@ -20,6 +20,64 @@ function AnimeCard({ anime, index }) {
   const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist();
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const handleAddToWatchlist = () => {
+    const animeData = {
+      id: anime.id,
+      name: anime.name,
+      image: anime.image,
+      episodes: anime.episodes,
+      episodes_aired: anime.episodes_aired,
+      score: anime.score,
+      kind: anime.kind,
+      isFavorite: true,
+    };
+
+    let existingWatchlist = localStorage.getItem("watchlist");
+
+    existingWatchlist = existingWatchlist ? JSON.parse(existingWatchlist) : [];
+
+    existingWatchlist.push(animeData);
+
+    localStorage.setItem("watchlist", JSON.stringify(existingWatchlist));
+
+    const isDuplicate = existingWatchlist.some(
+      (item) => item.id === animeData.id
+    );
+
+    if (!isDuplicate) {
+      // Add the anime to the watchlist
+      existingWatchlist.push(animeData);
+
+      // Save the modified watchlist data back to localStorage
+      localStorage.setItem("watchlist", JSON.stringify(existingWatchlist));
+      console.log("Anime added to watchlist:", animeData);
+    } else {
+      console.log("Anime already exists in watchlist:", animeData);
+    }
+  };
+
+  const handleRemoveFromWatchlist = (animeIdToRemove) => {
+    let existingWatchlist = localStorage.getItem("watchlist");
+
+    // Parse existing watchlist data (if available)
+    existingWatchlist = existingWatchlist ? JSON.parse(existingWatchlist) : [];
+
+    // Find the index of the item to remove in the watchlist array
+    const indexOfItemToRemove = existingWatchlist.findIndex(
+      (item) => item.id === animeIdToRemove
+    );
+
+    if (indexOfItemToRemove !== -1) {
+      // Remove the item from the watchlist array
+      existingWatchlist.splice(indexOfItemToRemove, 1);
+
+      // Save the modified watchlist data back to localStorage
+      localStorage.setItem("watchlist", JSON.stringify(existingWatchlist));
+    } else {
+      console.log("Item not found in watchlist.");
+    }
+  };
+
   const handleFavorite = () => {
     setIsFavorite(!isFavorite);
     if (!isFavorite) {
@@ -100,11 +158,12 @@ function AnimeCard({ anime, index }) {
             </div>
           </div>
           <div className="flex justify-between items-center">
-            <button
-              className="py-1 px-2 bg-[#161921] rounded-sm"
-              onClick={handleFavorite}
-            >
-              Add to Watchlist
+            <button className="py-1 px-2 bg-[#161921] rounded-sm">
+              {isFavorite ? (
+                <p onClick={handleRemoveFromWatchlist}>Remove from Watchlist</p>
+              ) : (
+                <p onClick={handleAddToWatchlist}>Add to Watchlist</p>
+              )}
             </button>
             <button onClick={handleFavorite}>
               {isFavorite ? <FaHeart /> : <FaRegHeart />}
