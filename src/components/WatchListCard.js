@@ -61,40 +61,44 @@ const WatchListCard = ({ anime }) => {
             </p>
           </div>
         </div>
-        <div className="flex gap-4 items-center">
-          <div className="flex flex-row gap-2 items-center">
-            <Image
-              src="/episodes.svg"
-              alt="episodes"
-              width={20}
-              height={20}
-              className="object-contain"
-            />
-            <p className="text-base text-white font-bold">
-              {anime.episodes || anime.episodes_aired}
-            </p>
+        <div className="flex items-center justify-between ">
+          <div className="flex flex-row gap-2">
+            <div className="flex flex-row items-center">
+              <Image
+                src="/episodes.svg"
+                alt="episodes"
+                width={20}
+                height={20}
+                className="object-contain"
+              />
+              <p className="text-base text-white font-bold">
+                {anime.episodes || anime.episodes_aired}
+              </p>
+            </div>
+            <div className="flex flex-row  items-center">
+              <Image
+                src="/star.svg"
+                alt="star"
+                width={18}
+                height={18}
+                className="object-contain"
+              />
+              <p className="text-base font-bold text-[#FFAD49]">
+                {anime.score}
+              </p>
+            </div>
           </div>
-          <div className="flex flex-row gap-2 items-center">
-            <Image
-              src="/star.svg"
-              alt="star"
-              width={18}
-              height={18}
-              className="object-contain"
-            />
-            <p className="text-base font-bold text-[#FFAD49]">{anime.score}</p>
+          <div className="flex flex-row items-center">
+            <button onClick={handleFavoriteClick} className="cursor-pointer ">
+              {!isFavorited ? (
+                <p onClick={() => handleRemoveFromWatchlist(anime.id)}>
+                  <FaHeart />
+                </p>
+              ) : (
+                <FaRegHeart />
+              )}
+            </button>
           </div>
-        </div>
-        <div className="flex justify-between items-center">
-          <button
-            className="py-1 px-2 bg-[#161921] rounded-sm"
-            onClick={() => handleRemoveFromWatchlist(anime.id)}
-          >
-            Remove from Watchlist
-          </button>
-          <button onClick={handleFavoriteClick}>
-            <FaHeart />
-          </button>
         </div>
       </div>
     </div>

@@ -131,43 +131,46 @@ function AnimeCard({ anime, index }) {
               </p>
             </div>
           </div>
-          <div className="flex gap-4 items-center">
-            <div className="flex flex-row gap-2 items-center">
-              <Image
-                src="/episodes.svg"
-                alt="episodes"
-                width={20}
-                height={20}
-                className="object-contain"
-              />
-              <p className="text-base text-white font-bold">
-                {anime.episodes || anime.episodes_aired}
-              </p>
+          <div className="flex gap-4 items-center justify-between">
+            <div className="flex flex-row gap-2">
+              <div className="flex flex-row gap-2 items-center">
+                <Image
+                  src="/episodes.svg"
+                  alt="episodes"
+                  width={20}
+                  height={20}
+                  className="object-contain"
+                />
+                <p className="text-base text-white font-bold">
+                  {anime.episodes || anime.episodes_aired}
+                </p>
+              </div>
+              <div className="flex flex-row gap-2 items-center">
+                <Image
+                  src="/star.svg"
+                  alt="star"
+                  width={18}
+                  height={18}
+                  className="object-contain"
+                />
+                <p className="text-base font-bold text-[#FFAD49]">
+                  {anime.score}
+                </p>
+              </div>
             </div>
             <div className="flex flex-row gap-2 items-center">
-              <Image
-                src="/star.svg"
-                alt="star"
-                width={18}
-                height={18}
-                className="object-contain"
-              />
-              <p className="text-base font-bold text-[#FFAD49]">
-                {anime.score}
-              </p>
+              <button onClick={handleFavorite}>
+                {isFavorite ? (
+                  <p onClick={handleAddToWatchlist}>
+                    <FaHeart />
+                  </p>
+                ) : (
+                  <p onClick={handleRemoveFromWatchlist}>
+                    <FaRegHeart />
+                  </p>
+                )}
+              </button>
             </div>
-          </div>
-          <div className="flex justify-between items-center">
-            <button className="py-1 px-2 bg-[#161921] rounded-sm">
-              {isFavorite ? (
-                <p onClick={handleRemoveFromWatchlist}>Remove from Watchlist</p>
-              ) : (
-                <p onClick={handleAddToWatchlist}>Add to Watchlist</p>
-              )}
-            </button>
-            <button onClick={handleFavorite}>
-              {isFavorite ? <FaHeart /> : <FaRegHeart />}
-            </button>
           </div>
         </div>
       </MotionDiv>

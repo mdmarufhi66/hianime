@@ -36,9 +36,15 @@ export default function Navbar() {
   return (
     <header className="flex items-center justify-between w-full px-8 ">
       <Link href="/">
-        <Image src="/logo.png" alt="ZenAnime" width={100} height={100} />
+        <Image
+          src="/logo.png"
+          alt="ZenAnime"
+          width={100}
+          height={100}
+          className="object-contain"
+        />
       </Link>
-      <div className="hidden md:flex">
+      <div className=" md:flex">
         <ul className="flex gap-10 md:Gap-5">
           <li>
             <Link
@@ -58,7 +64,7 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
-      <nav className="flex gap-3 md:Gap-5 items-center">
+      <nav className="hidden gap-3 md:flex Gap-5 items-center">
         <SearchBar />
       </nav>
 
@@ -97,7 +103,7 @@ export default function Navbar() {
       ) : (
         <button
           onClick={() => signIn("google")}
-          className="text-lg text-gray-500 font-medium"
+          className="text-lg text-white font-medium flex hover:text-red-500 border-red-500 px-1 py-1 rounded-full"
         >
           Sign In
         </button>

@@ -53,7 +53,7 @@ const TabPanel = ({ setOrder }) => {
               color: "white",
               "&.Mui-selected": { color: "white" },
             }}
-            label="Trending"
+            label="Top Rated"
             {...a11yProps(1)}
           />
           <Tab
@@ -62,7 +62,7 @@ const TabPanel = ({ setOrder }) => {
               "&.Mui-selected": { color: "white" },
             }}
             className="text-white"
-            label="Golden"
+            label="Old Days"
             {...a11yProps(2)}
           />
         </Tabs>

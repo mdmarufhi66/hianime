@@ -94,42 +94,44 @@ function MangaCard({ manga, index }) {
               </p>
             </div>
           </div>
-          <div className="flex gap-4 items-center">
-            <div className="flex flex-row gap-2 items-center">
-              <Image
-                src="/episodes.svg"
-                alt="episodes"
-                width={20}
-                height={20}
-                className="object-contain"
-              />
-              <p className="text-base text-white font-bold">
-                {manga.chapters || manga.chapters_aired}
-              </p>
+          <div className="flex gap-4 items-center justify-between">
+            <div className="flex flex-row gap-4">
+              <div className="flex flex-row gap-2 items-center">
+                <Image
+                  src="/episodes.svg"
+                  alt="episodes"
+                  width={20}
+                  height={20}
+                  className="object-contain"
+                />
+                <p className="text-base text-white font-bold">
+                  {manga.chapters || manga.chapters_aired}
+                </p>
+              </div>
+              <div className="flex flex-row gap-2 items-center">
+                <Image
+                  src="/star.svg"
+                  alt="star"
+                  width={18}
+                  height={18}
+                  className="object-contain"
+                />
+                <p className="text-base font-bold text-[#FFAD49]">
+                  {manga.score}
+                </p>
+              </div>
             </div>
             <div className="flex flex-row gap-2 items-center">
-              <Image
-                src="/star.svg"
-                alt="star"
-                width={18}
-                height={18}
-                className="object-contain"
-              />
-              <p className="text-base font-bold text-[#FFAD49]">
-                {manga.score}
-              </p>
+              <button onClick={handleFavorite}>
+                {isFavorite ? (
+                  <p onClick={handleAddToWatchlist}>
+                    <FaHeart />
+                  </p>
+                ) : (
+                  <FaRegHeart />
+                )}
+              </button>
             </div>
-          </div>
-          <div className="flex justify-between items-center">
-            <button
-              className="py-1 px-2 bg-[#161921] rounded-sm"
-              onClick={handleAddToWatchlist}
-            >
-              Add to Watchlist
-            </button>
-            <button onClick={handleAddToWatchlist}>
-              {isFavorite ? <FaHeart /> : <FaRegHeart />}
-            </button>
           </div>
         </div>
       </MotionDiv>
