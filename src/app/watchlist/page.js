@@ -6,9 +6,12 @@ function WatchlistPage() {
   const [watchlist, setWatchlist] = useState([]);
 
   useEffect(() => {
-    // Retrieve watchlist data from localStorage
-    const storedWatchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
-    setWatchlist(storedWatchlist);
+    // Access localStorage only on the client side
+    const storedWatchlist = localStorage.getItem("watchlist");
+    if (storedWatchlist) {
+      const parsedWatchlist = JSON.parse(storedWatchlist);
+      setWatchlist(parsedWatchlist);
+    }
   }, []);
 
   console.log(watchlist);
