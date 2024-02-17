@@ -7,12 +7,11 @@ function WatchlistPage() {
 
   useEffect(() => {
     // Access localStorage only on the client side
-    if (typeof window !== "undefined") {
-      const storedWatchlist = localStorage.getItem("watchlist");
-      if (storedWatchlist) {
-        const parsedWatchlist = JSON.parse(storedWatchlist);
-        setWatchlist(parsedWatchlist);
-      }
+    const storedWatchlist =
+      typeof window !== "undefined" ? localStorage.getItem("watchlist") : null;
+    if (storedWatchlist) {
+      const parsedWatchlist = JSON.parse(storedWatchlist);
+      setWatchlist(parsedWatchlist);
     }
   }, []);
 
