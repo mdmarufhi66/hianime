@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/layout/Footer";
-import AuthProvider from "@/context/AuthProvider";
+import { ClerkProvider } from "@clerk/nextjs";
 import { WatchlistProvider } from "@/context/WatchListContext";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,9 +16,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+<ClerkProvider>
+
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
           <WatchlistProvider>
             <main className="bg-[#0F1117]">
               <div className="bg-hero bg-center bg-cover bg-no-repeat">
@@ -29,8 +30,9 @@ export default function RootLayout({ children }) {
               <Footer />
             </main>
           </WatchlistProvider>
-        </AuthProvider>
+     
       </body>
     </html>
+</ClerkProvider>
   );
 }
