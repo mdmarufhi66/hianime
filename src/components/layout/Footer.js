@@ -2,7 +2,7 @@ import Image from "next/image";
 
 function Footer() {
   return (
-    <footer className="container sm:px-16 py-4 px-8 flex justify-between items-center gap-2 flex-wrap bg-[#181b23]">
+    <footer className="sm:px-16 py-4 px-8 flex justify-between items-center gap-2 flex-wrap bg-zinc-950">
       <p className="text-base font-bold text-white">@2024 ZenAnime</p>
       <Image
         src="/logo.png"
