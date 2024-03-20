@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AuthProvider>
           <WatchlistProvider>
-            <main className="max-w-7xl mx-auto bg-[#0F1117]">
+            <main className="mx-auto bg-[#0F1117]">
               <div className="bg-hero bg-center bg-cover bg-no-repeat">
                 <Navbar />
                 <Hero />
