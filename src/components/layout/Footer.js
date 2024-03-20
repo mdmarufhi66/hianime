@@ -2,13 +2,13 @@ import Image from "next/image";
 
 function Footer() {
   return (
-    <footer className="sm:px-16 py-4 px-8 flex justify-between items-center gap-2 flex-wrap bg-[#181b23]">
+    <footer className="container sm:px-16 py-4 px-8 flex justify-between items-center gap-2 flex-wrap bg-[#181b23]">
       <p className="text-base font-bold text-white">@2024 ZenAnime</p>
       <Image
         src="/logo.png"
         alt="logo"
-        width={47}
-        height={44}
+        width={60}
+        height={60}
         className="object-contain"
       />
       <div className="flex items-center gap-6">

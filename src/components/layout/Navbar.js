@@ -34,7 +34,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="flex items-center justify-between w-full px-8 ">
+    <header className="container flex items-center justify-between mx-auto ">
       <Link href="/">
         <Image
           src="/logo.png"
