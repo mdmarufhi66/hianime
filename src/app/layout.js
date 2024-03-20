@@ -1,8 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/Hero";
-import Footer from "@/components/Footer";
+import Footer from "@/components/layout/Footer";
 import AuthProvider from "@/context/AuthProvider";
 import { WatchlistProvider } from "@/context/WatchListContext";
 

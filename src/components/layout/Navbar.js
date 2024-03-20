@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { SearchBar } from "./search";
+import { SearchBar } from "../search";
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { DropMenu } from "./DropMenu";
+import { DropMenu } from "../DropMenu";
 
 export default function Navbar() {
   const { data: session } = useSession();
