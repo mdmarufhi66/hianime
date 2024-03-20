@@ -21,7 +21,7 @@ export default function Navbar() {
           className="object-contain"
         />
       </Link>
-      <div className=" md:flex">
+      <div className="items-center md:flex">
         <ul className="flex gap-10 md:Gap-5">
           <li>
             <Link
@@ -46,8 +46,9 @@ export default function Navbar() {
       </nav>
 
       {userId ? (
-        <div className="flex gap-3 md:Gap-5 relative">
+        <div className="flex items-center gap-8">
           <UserButton afterSignOutUrl="/"/>
+          <Link href="/watchlist" className="text-lg font-bold text-white hover:text-red-500">Watchlist</Link>
         </div>
       ) : (
         <Link
