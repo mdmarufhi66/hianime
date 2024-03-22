@@ -97,7 +97,7 @@ export const SearchBar = () => {
               {dropdownOpen && (
                 <div
                   ref={dropdownRef}
-                  className="flex bg-zinc-950 rounded-md w-full hover:bg-zinc-800"
+                  className="flex bg-zinc-950 border rounded-xl w-full hover:bg-zinc-800"
                 >
                   <ul className="flex flex-col text-white w-screen mx-2">
                     {search(items).map((item) => (
@@ -111,8 +111,8 @@ export const SearchBar = () => {
                               src={`https://shikimori.one${item.image.original}`}
                               alt={item.name}
                               width={47}
-                              height={47}
-                              className="rounded-full"
+                              height={100}
+                              className="rounded"
                             />
                           </div>
                           <div className="items-center relative ">
