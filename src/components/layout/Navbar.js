@@ -26,7 +26,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/"
-              className="text-lg font-bold text-white hover:text-red-500"
+              className="text-2xl font-bold text-white hover:text-red-500"
             >
               Anime
             </Link>
@@ -34,7 +34,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/manga"
-              className="text-lg font-bold text-white hover:text-red-500"
+              className="text-2xl font-bold text-white hover:text-red-500"
             >
               Manga
             </Link>
@@ -48,12 +48,12 @@ export default function Navbar() {
       {userId ? (
         <div className="flex items-center gap-8">
           <UserButton afterSignOutUrl="/"/>
-          <Link href="/watchlist" className="text-lg font-bold text-white hover:text-red-500">Watchlist</Link>
+          <Link href="/watchlist" className="text-2xl font-bold text-white hover:text-red-500">Watchlist</Link>
         </div>
       ) : (
         <Link
           href="/sign-in"
-          className="text-lg text-white font-medium flex hover:text-red-500 border-red-500 px-1 py-1 rounded-full"
+          className="text-2xl text-white font-medium flex hover:text-red-500 border-red-500 px-1 py-1 rounded-full"
         >
           Sign In
         </Link>
