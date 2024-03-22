@@ -106,13 +106,13 @@ export const SearchBar = () => {
                         href={`https://shikimori.one${item.url}`}
                       >
                         <li className="flex gap-3 py-2">
-                          <div className="relative flex-1 rounded-full p-2">
+                          <div className="relative flex-1 rounded-full p-2 min-w-[47px] min-h-[47px]">
                             <Image
                               src={`https://shikimori.one${item.image.original}`}
                               alt={item.name}
                               width={47}
-                              height={100}
-                              className="rounded"
+                              height={47}
+                              className="rounded h-full w-full "
                             />
                           </div>
                           <div className="items-center relative ">
