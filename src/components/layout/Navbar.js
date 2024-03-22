@@ -6,9 +6,7 @@ import { auth } from "@clerk/nextjs";
 import { UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
-
-  const {userId} = auth()
-
+  const { userId } = auth();
 
   return (
     <header className="container flex items-center justify-between mx-auto ">
@@ -47,8 +45,13 @@ export default function Navbar() {
 
       {userId ? (
         <div className="flex items-center gap-8">
-          <UserButton afterSignOutUrl="/"/>
-          <Link href="/watchlist" className="text-2xl font-bold text-white hover:text-red-500">Watchlist</Link>
+          <UserButton afterSignOutUrl="/" />
+          <Link
+            href="/watchlist"
+            className="text-2xl font-bold text-white hover:text-red-500"
+          >
+            Watchlist
+          </Link>
         </div>
       ) : (
         <Link

@@ -1,5 +1,11 @@
 import MangaList from "@/components/MangaList";
 import React from "react";
+import { Metadata } from "next";
+
+export const metadata = {
+  title: "Zen Anime | Manga",
+  description: "Manga",
+};
 
 const Manga = () => {
   return (
