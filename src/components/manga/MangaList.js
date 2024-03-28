@@ -9,7 +9,7 @@ const MAX_LIMIT = 8;
 
 const MangaList = () => {
   const [order, setOrder] = useState("popularity");
-  const [page, setPage] = useState(null);
+  const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
 

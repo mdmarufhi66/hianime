@@ -13,7 +13,17 @@ function a11yProps(index) {
   };
 }
 const TabPanel = ({ setOrder }) => {
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(0);
+
+  React.useEffect(() => {
+    if (order === "popularity") {
+      setValue(0);
+    } else if (order === "ranked") {
+      setValue(1);
+    } else if (order === "created_at") {
+      setValue(2);
+    }
+  }, [order]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

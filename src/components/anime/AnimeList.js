@@ -9,7 +9,7 @@ const MAX_LIMIT = 8;
 
 const AnimeList = () => {
   const [order, setOrder] = useState("popularity");
-  const [page, setPage] = useState(null);
+  const [page, setPage] = useState(1);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -42,6 +42,7 @@ const AnimeList = () => {
       {!loading && (
         <AnimeCards list={list} setPage={setPage} nextPage={nextPage} />
       )}
+      ّ
     </>
   );
 };
