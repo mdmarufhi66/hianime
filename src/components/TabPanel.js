@@ -13,7 +13,7 @@ function a11yProps(index) {
   };
 }
 const TabPanel = ({ setOrder }) => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
