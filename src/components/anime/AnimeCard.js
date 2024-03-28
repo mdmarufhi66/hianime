@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MotionDiv } from "../ui/Motion";
 import Link from "next/link";
 import Modal from "../ui/Modal";
@@ -18,9 +18,29 @@ function AnimeCard({ anime, index }) {
   const router = useRouter();
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
   const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist();
+
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleAddToWatchlist = () => {
+  useEffect(() => {
+    const localStorageWatchList = localStorage.getItem("watchlist");
+    const existingWatchlist = localStorageWatchList
+      ? JSON.parse(localStorageWatchList)
+      : [];
+
+    existingWatchlist.map((item) => {
+      if (item.id === anime.id) {
+        setIsFavorite(true);
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleFavorite = () => {
+    const localStorageWatchList = localStorage.getItem("watchlist");
+    const existingWatchlist = localStorageWatchList
+      ? JSON.parse(localStorageWatchList)
+      : [];
+
     const animeData = {
       id: anime.id,
       name: anime.name,
@@ -32,60 +52,24 @@ function AnimeCard({ anime, index }) {
       isFavorite: true,
     };
 
-    let existingWatchlist = localStorage.getItem("watchlist");
+    const index = existingWatchlist.findIndex((item) => item.id === anime.id);
 
-    existingWatchlist = existingWatchlist ? JSON.parse(existingWatchlist) : [];
-
-    existingWatchlist.push(animeData);
-
-    localStorage.setItem("watchlist", JSON.stringify(existingWatchlist));
-
-    const isDuplicate = existingWatchlist.some(
-      (item) => item.id === animeData.id
-    );
-
-    if (!isDuplicate) {
-      // Add the anime to the watchlist
-      existingWatchlist.push(animeData);
-
-      // Save the modified watchlist data back to localStorage
-      localStorage.setItem("watchlist", JSON.stringify(existingWatchlist));
-      console.log("Anime added to watchlist:", animeData);
+    if (index !== -1) {
+      const updatedWatchList = [
+        ...existingWatchlist.slice(0, index),
+        ...existingWatchlist.slice(index + 1),
+      ];
+      localStorage.setItem("watchlist", JSON.stringify(updatedWatchList));
+      setIsFavorite(false);
+      addToWatchlist(animeData);
     } else {
-      console.log("Anime already exists in watchlist:", animeData);
+      const updatedWatchList = [...existingWatchlist, animeData];
+      localStorage.setItem("watchlist", JSON.stringify(updatedWatchList));
+      setIsFavorite(true);
+      removeFromWatchlist(animeData);
     }
   };
 
-  const handleRemoveFromWatchlist = (animeIdToRemove) => {
-    let existingWatchlist = localStorage.getItem("watchlist");
-
-    // Parse existing watchlist data (if available)
-    existingWatchlist = existingWatchlist ? JSON.parse(existingWatchlist) : [];
-
-    // Find the index of the item to remove in the watchlist array
-    const indexOfItemToRemove = existingWatchlist.findIndex(
-      (item) => item.id === animeIdToRemove
-    );
-
-    if (indexOfItemToRemove !== -1) {
-      // Remove the item from the watchlist array
-      existingWatchlist.splice(indexOfItemToRemove, 1);
-
-      // Save the modified watchlist data back to localStorage
-      localStorage.setItem("watchlist", JSON.stringify(existingWatchlist));
-    } else {
-      console.log("Item not found in watchlist.");
-    }
-  };
-
-  const handleFavorite = () => {
-    setIsFavorite(!isFavorite);
-    if (!isFavorite) {
-      addToWatchlist(anime); // Add to watchlist
-    } else {
-      removeFromWatchlist(anime.id); // Remove from watchlist
-    }
-  };
   const imageSrc =
     anime.image && anime.image.original
       ? `https://shikimori.one${anime.image.original}`
@@ -160,15 +144,7 @@ function AnimeCard({ anime, index }) {
             </div>
             <div className="flex flex-row gap-2 items-center">
               <button onClick={handleFavorite}>
-                {isFavorite ? (
-                  <p onClick={handleRemoveFromWatchlist}>
-                    <FaHeart />
-                  </p>
-                ) : (
-                  <p onClick={handleAddToWatchlist}>
-                    <FaRegHeart />
-                  </p>
-                )}
+                {isFavorite ? <FaHeart /> : <FaRegHeart />}
               </button>
             </div>
           </div>
