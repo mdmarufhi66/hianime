@@ -12,8 +12,18 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-const TabPanel = ({ setOrder }) => {
+const TabPanel = ({ order, setOrder }) => {
   const [value, setValue] = React.useState(0);
+
+  React.useEffect(() => {
+    if (order === "popularity") {
+      setValue(0);
+    } else if (order === "ranked") {
+      setValue(1);
+    } else if (order === "created_at") {
+      setValue(2);
+    }
+  }, [order]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
