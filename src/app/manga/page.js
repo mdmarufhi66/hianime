@@ -1,4 +1,4 @@
-import MangaList from "@/components/MangaList";
+import MangaList from "@/components/manga/MangaList";
 import React from "react";
 import { Metadata } from "next";
 

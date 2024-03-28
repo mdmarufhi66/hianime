@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
-import Hero from "@/components/Hero";
+import Hero from "@/components/hero/Hero";
 import Footer from "@/components/layout/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { WatchlistProvider } from "@/context/WatchListContext";
@@ -16,10 +16,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-<ClerkProvider>
-
-    <html lang="en">
-      <body className={inter.className}>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
           <WatchlistProvider>
             <main className="bg-[#0F1117]">
               <div className="bg-hero bg-center bg-cover bg-no-repeat">
@@ -30,9 +29,8 @@ export default function RootLayout({ children }) {
               <Footer />
             </main>
           </WatchlistProvider>
-     
-      </body>
-    </html>
-</ClerkProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

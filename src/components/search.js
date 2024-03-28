@@ -5,7 +5,7 @@ import useModal from "../hooks/useModal";
 import Link from "next/link";
 import Image from "next/image";
 import { IoSearch } from "react-icons/io5";
-import { DropMenu } from "./DropMenu";
+import { DropMenu } from "./ui/DropMenu";
 
 export const SearchBar = () => {
   const [error, setError] = React.useState(null);

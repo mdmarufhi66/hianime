@@ -1,4 +1,4 @@
-import AnimeList from "@/components/AnimeList";
+import AnimeList from "@/components/anime/AnimeList";
 
 function Home() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import WatchListCard from "@/components/WatchListCard";
+import WatchListCard from "@/components/watchlist/WatchListCard";
 import { useState, useEffect } from "react";
 function WatchlistPage() {
   const [watchlist, setWatchlist] = useState([]);
@@ -17,7 +17,7 @@ function WatchlistPage() {
 
   console.log(watchlist);
   return (
-    <div className="sm:p-16 py-16 px-8 flex flex-col gap-10 bg-zinc-950 justify-center items-center">
+    <div className=" sm:p-16 py-16 px-8 flex flex-col gap-10 bg-zinc-950 justify-center items-center">
       <h1 className="justify-self-center text-3xl font-bold">
         Explore <span className="red-gradient">Watchlist</span>
       </h1>

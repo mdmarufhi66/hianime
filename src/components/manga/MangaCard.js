@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useState } from "react";
-import { MotionDiv } from "./Motion";
+import { MotionDiv } from "../ui/Motion";
 import Link from "next/link";
-import Modal from "./Modal";
-import useModal from "../hooks/useModal";
+import Modal from "../ui/Modal";
+import useModal from "../../hooks/useModal";
 import { useWatchlist } from "@/context/WatchListContext";
 import { useRouter } from "next/navigation";
 
